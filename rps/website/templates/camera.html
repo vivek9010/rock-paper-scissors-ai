@@ -1,0 +1,330 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Rock Paper Scissors AI</title>
+
+    <meta
+        name="csrf-token"
+        content="{{ csrf_token }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/camera.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+    <h1>
+        Rock Paper Scissors AI
+    </h1>
+
+    <p class="subtitle">
+        MediaPipe Hand Detection + 4 AI Models
+    </p>
+
+
+    <div class="container">
+
+
+        <!-- ==================================================
+             CAMERA
+        ================================================== -->
+
+        <div class="camera-card">
+
+            <h2>
+                Camera
+            </h2>
+
+
+            <div class="camera-box">
+
+                <video
+                    id="video"
+                    autoplay
+                    muted
+                    playsinline
+                ></video>
+
+
+                <canvas
+                    id="overlay"
+                ></canvas>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button
+                    id="startBtn"
+                    type="button"
+                >
+                    Start Camera
+                </button>
+
+
+                <button
+                    id="captureBtn"
+                    type="button"
+                    disabled
+                >
+                    Capture & Predict
+                </button>
+
+
+                <button
+                    id="stopBtn"
+                    type="button"
+                    disabled
+                >
+                    Stop Camera
+                </button>
+
+            </div>
+
+
+            <p id="status">
+                Camera is stopped.
+            </p>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             RESULT
+        ================================================== -->
+
+        <div class="result-card">
+
+
+            <h2>
+                Final Prediction
+            </h2>
+
+
+            <div
+                id="prediction"
+                class="prediction"
+            >
+                —
+            </div>
+
+
+            <div
+                id="confidence"
+                class="confidence"
+            >
+                Confidence: 0%
+            </div>
+
+
+            <div
+                id="agreement"
+                class="agreement"
+            >
+                Model Agreement: 0/4
+            </div>
+
+
+
+            <!-- ==================================================
+                 PROBABILITIES
+            ================================================== -->
+
+            <div class="probabilities">
+
+
+                <!-- PAPER -->
+
+                <div class="probability">
+
+                    <span>
+                        Paper
+                    </span>
+
+                    <div class="bar">
+
+                        <div
+                            id="paperBar"
+                            class="bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <strong id="paperValue">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <!-- ROCK -->
+
+                <div class="probability">
+
+                    <span>
+                        Rock
+                    </span>
+
+                    <div class="bar">
+
+                        <div
+                            id="rockBar"
+                            class="bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <strong id="rockValue">
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <!-- SCISSORS -->
+
+                <div class="probability">
+
+                    <span>
+                        Scissors
+                    </span>
+
+                    <div class="bar">
+
+                        <div
+                            id="scissorsBar"
+                            class="bar-fill"
+                        ></div>
+
+                    </div>
+
+                    <strong id="scissorsValue">
+                        0%
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 MODEL RESULTS
+            ================================================== -->
+
+            <div class="model-results">
+
+                <h3>
+                    Model Verification
+                </h3>
+
+
+                <div
+                    id="model1"
+                    class="model-result"
+                >
+                    Model 1: Waiting...
+                </div>
+
+
+                <div
+                    id="model2"
+                    class="model-result"
+                >
+                    Model 2: Waiting...
+                </div>
+
+
+                <div
+                    id="model3"
+                    class="model-result"
+                >
+                    Model 3: Waiting...
+                </div>
+
+
+                <div
+                    id="model4"
+                    class="model-result"
+                >
+                    Model 4: Waiting...
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 CROPPED HAND
+            ================================================== -->
+
+            <div class="crop-area">
+
+                <h3>
+                    Captured Hand
+                </h3>
+
+
+                <canvas
+                    id="cropPreview"
+                    width="224"
+                    height="224"
+                ></canvas>
+
+
+                <p>
+                    Only this hand crop is sent to Django.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Hidden full camera canvas -->
+
+    <canvas
+        id="captureCanvas"
+        hidden
+    ></canvas>
+
+
+</div>
+
+
+<script
+    type="module"
+    src="{% static 'js/camera.js' %}"
+></script>
+
+
+</body>
+
+</html>

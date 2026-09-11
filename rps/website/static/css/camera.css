@@ -1,0 +1,406 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f4f4;
+
+    color: #222;
+}
+
+
+.page {
+
+    width: 94%;
+
+    max-width: 1100px;
+
+    margin: 30px auto;
+}
+
+
+h1 {
+
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    color: #666;
+}
+
+
+.container {
+
+    display: grid;
+
+    grid-template-columns:
+        1.4fr
+        0.8fr;
+
+    gap: 20px;
+}
+
+
+.camera-card,
+.result-card {
+
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+}
+
+
+/* ==================================================
+   CAMERA
+================================================== */
+
+.camera-box {
+
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 4 / 3;
+
+    background: #111;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+}
+
+
+#video,
+#overlay {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+#overlay {
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+button {
+
+    padding: 11px 18px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #222;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+button:hover {
+
+    background: #444;
+}
+
+
+button:disabled {
+
+    opacity: 0.45;
+
+    cursor: not-allowed;
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+#status {
+
+    margin-top: 12px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   FINAL PREDICTION
+================================================== */
+
+.prediction {
+
+    margin-top: 20px;
+
+    font-size: 40px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+
+.confidence {
+
+    margin-top: 5px;
+
+    color: #666;
+}
+
+
+.agreement {
+
+    margin-top: 15px;
+
+    padding: 10px;
+
+    background: #f1f1f1;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+/* ==================================================
+   PROBABILITIES
+================================================== */
+
+.probabilities {
+
+    margin-top: 30px;
+}
+
+
+.probability {
+
+    display: grid;
+
+    grid-template-columns:
+        80px
+        1fr
+        55px;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+
+.bar {
+
+    height: 10px;
+
+    background: #ddd;
+
+    border-radius: 5px;
+
+    overflow: hidden;
+}
+
+
+.bar-fill {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #222;
+
+    transition:
+        width 0.3s ease;
+}
+
+
+/* ==================================================
+   MODEL RESULTS
+================================================== */
+
+.model-results {
+
+    margin-top: 30px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #ddd;
+}
+
+
+.model-results h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 12px;
+
+    font-size: 16px;
+}
+
+
+.model-result {
+
+    padding: 10px;
+
+    margin-bottom: 8px;
+
+    background: #f7f7f7;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+}
+
+
+/* ==================================================
+   CROP
+================================================== */
+
+.crop-area {
+
+    margin-top: 30px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #ddd;
+}
+
+
+.crop-area h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 12px;
+}
+
+
+#cropPreview {
+
+    display: block;
+
+    width: 224px;
+
+    height: 224px;
+
+    max-width: 100%;
+
+    background: #111;
+
+    border: 1px solid #ddd;
+}
+
+
+.crop-area p {
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 800px) {
+
+    .container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .prediction {
+
+        font-size: 32px;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .page {
+
+        width: 96%;
+
+        margin: 15px auto;
+
+    }
+
+
+    .camera-card,
+    .result-card {
+
+        padding: 12px;
+
+    }
+
+
+    .probability {
+
+        grid-template-columns:
+            70px
+            1fr
+            50px;
+
+    }
+
+}
