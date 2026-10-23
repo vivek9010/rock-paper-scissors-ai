@@ -4,8 +4,10 @@ import traceback
 import numpy as np
 from PIL import Image, UnidentifiedImageError
 
-import tensorflow as tf
-
+def get_tf():
+    import tensorflow as tf
+    return tf
+    
 from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -36,7 +38,7 @@ def get_models():
     print("==============================================")
 
 
-    for model_path in settings.MODEL_PATHS:
+    for model_path in settings.MODEL_PATHS[:1]:
 
         print()
         print(
@@ -64,7 +66,7 @@ def get_models():
         )
 
 
-        model = tf.keras.models.load_model(
+        model = get_tf().keras.models.load_model(
             model_path,
             compile=False
         )
@@ -240,7 +242,7 @@ def prepare_image_for_model(
     if not settings.MODEL_INCLUDES_PREPROCESSING:
 
         image_array = (
-            tf.keras.applications
+            get_tf().keras.applications
             .resnet50
             .preprocess_input(
                 image_array
@@ -326,7 +328,7 @@ def convert_to_probabilities(
     ):
 
         prediction = (
-            tf.nn.softmax(
+            get_tf().nn.softmax(
                 prediction
             )
             .numpy()
@@ -696,7 +698,7 @@ def predict(request):
     # CHECK NUMBER OF MODELS
     # ========================================================
 
-    if len(models) != 4:
+    if len(models) != 1:
 
         return JsonResponse(
             {
