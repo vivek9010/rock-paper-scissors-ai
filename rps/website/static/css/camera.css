@@ -404,3 +404,9 @@ button:disabled {
     }
 
 }
+
+
+/* Hide MediaPipe tracking lines and dots */
+#overlay {
+    display: none !important;
+}

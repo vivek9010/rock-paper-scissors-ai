@@ -15,6 +15,8 @@ const video =
 
 const overlay =
     document.getElementById("overlay");
+    
+    overlay.style.display = "none";
 
 
 const overlayCtx =
@@ -469,19 +471,17 @@ function stopCamera() {
 // DRAW HAND
 // ==================================================
 
-function drawHand(
-    landmarks
-) {
 
+function drawHand(landmarks) {
+    // Tracking continues; visual landmarks are disabled.
     overlayCtx.clearRect(
-
         0,
         0,
-
         overlay.width,
         overlay.height
-
     );
+}
+
 
 
     // ==================================================
@@ -619,7 +619,7 @@ function drawHand(
 
     }
 
-}
+
 
 
 // ==================================================
