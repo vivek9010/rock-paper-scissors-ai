@@ -472,152 +472,58 @@ function stopCamera() {
 // ==================================================
 
 
+
 function drawHand(landmarks) {
-    // Tracking continues; visual landmarks are disabled.
     overlayCtx.clearRect(
         0,
         0,
         overlay.width,
         overlay.height
     );
-}
-
-
-
-    // ==================================================
-    // HAND CONNECTIONS
-    // ==================================================
 
     const connections = [
-
-        [0, 1],
-        [1, 2],
-        [2, 3],
-        [3, 4],
-
-        [0, 5],
-        [5, 6],
-        [6, 7],
-        [7, 8],
-
-        [5, 9],
-        [9, 10],
-        [10, 11],
-        [11, 12],
-
-        [9, 13],
-        [13, 14],
-        [14, 15],
-        [15, 16],
-
-        [13, 17],
-        [17, 18],
-        [18, 19],
-        [19, 20],
-
+        [0, 1], [1, 2], [2, 3], [3, 4],
+        [0, 5], [5, 6], [6, 7], [7, 8],
+        [5, 9], [9, 10], [10, 11], [11, 12],
+        [9, 13], [13, 14], [14, 15], [15, 16],
+        [13, 17], [17, 18], [18, 19], [19, 20],
         [0, 17]
-
     ];
 
+    overlayCtx.strokeStyle = "#00ff88";
+    overlayCtx.lineWidth = 3;
 
-    // ==================================================
-    // DRAW LINES
-    // ==================================================
-
-    overlayCtx.strokeStyle =
-        "#00ff88";
-
-
-    overlayCtx.lineWidth =
-        3;
-
-
-    for (
-        const [a, b]
-        of connections
-    ) {
-
-        const pointA =
-            landmarks[a];
-
-
-        const pointB =
-            landmarks[b];
-
+    for (const [a, b] of connections) {
+        const pointA = landmarks[a];
+        const pointB = landmarks[b];
 
         overlayCtx.beginPath();
-
-
         overlayCtx.moveTo(
-
-            pointA.x *
-                overlay.width,
-
-            pointA.y *
-                overlay.height
-
+            pointA.x * overlay.width,
+            pointA.y * overlay.height
         );
-
-
         overlayCtx.lineTo(
-
-            pointB.x *
-                overlay.width,
-
-            pointB.y *
-                overlay.height
-
+            pointB.x * overlay.width,
+            pointB.y * overlay.height
         );
-
-
         overlayCtx.stroke();
-
     }
 
+    overlayCtx.fillStyle = "#ff0000";
 
-    // ==================================================
-    // DRAW 21 DOTS
-    // ==================================================
-
-    overlayCtx.fillStyle =
-        "#ff0000";
-
-
-    for (
-        const point
-        of landmarks
-    ) {
-
-        const x =
-            point.x *
-            overlay.width;
-
-
-        const y =
-            point.y *
-            overlay.height;
-
-
+    for (const point of landmarks) {
         overlayCtx.beginPath();
-
-
         overlayCtx.arc(
-
-            x,
-            y,
-
+            point.x * overlay.width,
+            point.y * overlay.height,
             5,
-
             0,
-
             Math.PI * 2
-
         );
-
-
         overlayCtx.fill();
-
     }
+}
+
 
 
 
